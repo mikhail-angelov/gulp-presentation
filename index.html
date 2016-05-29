@@ -24,11 +24,14 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>
-					<h1>Gulp under the hood</h1>
-					<h3>Презентация о иструменет автоматизации</h3>
+
+				<section class="present" style="top: 0px; display: block;">
+					<h2>Gulp under the hood</h2>
+					<h1>
+					<img src="gulp-2x.png" style="border:0px; background:0000">
+					</h1>
 					<p>
-						<small>Создатель <a href="http://github.com/mikhail.angelov">Михаил Ангелов</a> / <a href="https://twitter.com/MikhailAngelov">@MikhailAngelov</a></small>
+						<small><a href="http://github.com/mikhail.angelov">Михаил Ангелов</a> / <a href="https://twitter.com/MikhailAngelov">@MikhailAngelov</a></small>
 					</p>
 				</section>
 
@@ -38,32 +41,16 @@
 						
 					</p>
 				</section>
-				<section data-background="routine-spirals.jpg">
 
-				</section>
 
-				<section>
-						<h4>Варианты интсрументов автоматизации</h4>
-						<p class="fragment fade-up">bash (bat)</p>
-						<p class="fragment fade-up">make</p>
-						<p class="fragment fade-up">python, perl, groovy</p>
-						<h3 class="fragment fade-up" style="color: #1b91ff;">JS</h3>
-				</section>
-				<section>
-					<h4>JS библитеки для автоматизации</h4>
-					<p class="fragment fade-up">node.js</p>
-					<p class="fragment fade-up">Grant</p>
-					<p class="fragment fade-up">Webpack</p>
-					<h3 class="fragment fade-up" style="color: #1b91ff;">Gulp</h3>
-				</section>
 				<section data-background="under.jpg">
 					<!-- <h2>заглянем подкапот </h2> -->
 				</section>
 
-				<section>
+
 					<section>
 						<h4>Gulp API</h4>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code data-trim="" data-noescape="" class="javascript">
 gulp.task
 gulp.src
 gulp.dest
@@ -73,28 +60,28 @@ gulp.watch
 					</section>
 					<section>
 						<h4>Элементарная задача Gulp</h4>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code data-trim="" data-noescape="" class="javascript">
 gulp.task('test', function{
     gulp.src('test.txt')
-    .pipe(gulp.dest('out'));
+    .<span class="fragment highlight-green">pipe</span>(gulp.dest('out'));
 });
 						</code></pre>
 						<h4>команда запуска</h4>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code data-trim="" data-noescape="" class="javascript">
 gulp test
 						</code></pre>
 					</section>
-				</section>
+
 
 				<section>
 					<h4>сделаем свой gulp</h4>
 					<img height="238" data-src="bike.jpg">
 				</section>
 
-				<section>
+
 					<section>
 						<h4>Элементарная задача Gulp</h4>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code data-trim="" data-noescape="" class="javascript">
 //plug.js
 var tasks = {};
 module.exports = {
@@ -109,7 +96,7 @@ process.nextTick(function(){
     tasks[taskName]();
 });
 						</code></pre>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code data-trim="" data-noescape="" class="javascript">
 //plugfile.js
 var plug = require('./plug');
 
@@ -120,26 +107,25 @@ plug.task('test', function(){
 					</section>
 					<section>
 						<h4>запустим</h4>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code data-trim="" data-noescape="" class="javascript">
 node plugfile.js test
 						</code></pre>
 						<h4>получим результат</h4>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code data-trim="" data-noescape="" class="javascript">
 hello plug
 						</code></pre>
 					</section>
-				</section>
 
-				<section>
+
 					<section>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code data-trim="" data-noescape="" class="javascript">
 //plug.js
 var stream = require('stream');
 var fs = require('fs');
 function onSrc(fileName){
     var src = stream.Readable({
         read: function (chunk) {},
-        objectMode: true
+        <span class="fragment highlight-red">objectMode: true</span>
     });
     fs.readFile(path, 'utf8', (e,data)=> {
         src.push({
@@ -154,18 +140,17 @@ function onSrc(fileName){
 					</section>
 					<section>
 					<h4>Структура объекта в потоке</h4>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code data-trim="" data-noescape="" class="javascript">
 {
   name: path, //file name
   buffer: data //file content
 }
 						</code></pre>
 					</section>
-				</section>
 
-				<section>
+
 					<section>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code data-trim="" data-noescape="" class="javascript">
 //plug.js
 function onDest(path){
     var writer = new stream.Writable({
@@ -181,7 +166,7 @@ function onDest(path){
 					</section>
 					<section>
 						<h4>обновим plug file</h4>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code data-trim="" data-noescape="" class="javascript">
 //plugfile.js
 var plug = require('./plug');
 
@@ -191,17 +176,18 @@ plug.task('test', function(){
 })
 						</code></pre>
 						<h4>получим результат</h4>
-						<pre><code class="hljs" data-trim contenteditable>
-touch test.txt
-node plugfile.js test
-ls  ./out
+						<pre><code data-trim="" data-noescape="" class="javascript">
+>touch test.txt
+>node plugfile.js test
+>ls  ./out
+test.txt
 						</code></pre>
 					</section>
-				</section>
-				<section>
+
+
 					<section>
 					<h4>Воспользуемся библиотекой vinyl-fs</h4>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code data-trim="" data-noescape="" class="javascript">
 //plug.js
 var vfs = require('vinyl-fs')
 
@@ -215,20 +201,19 @@ function onDest(path){
 						</code></pre>
 					</section>
 					<section>
-						<pre><code class="hljs" data-trim contenteditable>
-node plugfile.js test
+						<pre><code data-trim="" data-noescape="" class="javascript">
+>node plugfile.js test
 						</code></pre>
 					</section>
-				</section>
-				<section>
+
 					<section>
 
-						<pre><code class="hljs" data-trim contenteditable>
-npm i gulp-rename
+						<pre><code data-trim="" data-noescape="" class="javascript">
+>npm i gulp-rename
 						</code></pre>
 					</section>
 					<section>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code data-trim="" data-noescape="" class="javascript">
 //plugfile.js
 var plug = require('./app.js');
 var rename = require('gulp-rename');
@@ -240,10 +225,8 @@ plug.task('test', function () {
 });
 						</code></pre>
 					</section>
-				</section>
 
 
-				<section>
 					<section>
 					<h4>Последняя API по порядку а не по значению </h4>
 					<pre><code class="hljs"  data-trim contenteditable>
@@ -265,16 +248,16 @@ function onWatch(fileName, taskName){
 					</code></pre>
 					</section>
 					<section>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code data-trim="" data-noescape="" class="javascript">
 //plugfile.js
 
 plug.watch('test.txt','test');
 						</code></pre>
-						<pre><code class="hljs" data-trim contenteditable>
-node plug test
+						<pre><code data-trim="" data-noescape="" class="javascript">
+>node plug test
 						</code></pre>
 					</section>
-				</section>
+
 
 				<section>
 					<h4>Заключение</h4>
@@ -291,21 +274,21 @@ node plug test
 					</p>
 				</section>
 
-				<section>
+
 					<section>
 						<h4>Что же нового будет в Gulp 4?</h4>
 					</section>
 					<section>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code data-trim="" data-noescape="" class="javascript">
 gulp.parallel
 gulp.series
 						</code></pre>
 					</section>
-				</section>
+
 
 				<section>
 					<h4>изменим файл конфигурации</h4>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code data-trim="" data-noescape="" class="javascript">
 //plugfile.js
 var plug = require('./plug');
 plug.task('sTask1', () => {
@@ -316,17 +299,17 @@ plug.task('sTask2', () => {
     return plug.src('test2.txt')
     .pipe(plug.dest('out'))
 });
-plug.task('test-parallel', plug.parallel(['sTask1', 'sTask2']), ()=>{
+plug.task('test-series', plug.parallel(['sTask1', 'sTask2']), ()=>{
     console.log('done')
 });
-plug.task('test-series', plug.series(['sTask1', 'sTask2']), ()=>{
+plug.task('test-parallel', plug.series(['sTask1', 'sTask2']), ()=>{
     console.log('done')
 });
 						</code></pre>
 				</section>
 				<section>
 				<h4>изменим регистрацию под задач</h4>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code data-trim="" data-noescape="" class="javascript">
 //plug.js
 function onTask(name, subTasks, callback){
     if(arguments.length === 2 && typeof arguments[1] === 'function'){
@@ -348,7 +331,7 @@ function onSeries(tasks){
 				</section>
 
 				<section>
-						<pre><code class="hljs" data-trim contenteditable style="max-height: 600px; font-size: 15px; line-height: 100%;">
+						<pre><code data-trim="" data-noescape="" class="javascript" style="max-height: 600px; font-size: 15px; line-height: 100%;">
 //plug.js
 var async = require('async')
 
@@ -392,24 +375,11 @@ process.nextTick(function(){
 						</code></pre>
 				</section>
 
-				<section>
+
 					<section>
 						<h4>результат выполнения первой задачи</h4>
-						<pre><code class="hljs" data-trim contenteditable>
-node plugFile.js test-parallel
-
-task test-parallel is started
-task subTask1 is started
-task subTask2 is started
-stream subTask2 is ended
-stream subTask1 is ended
-done
-						</code></pre>
-					</section>
-					<section>
-						<h4>результат выполнения второй задачи</h4>
-						<pre><code class="hljs" data-trim contenteditable>
-node plugFile.js test-series
+						<pre><code data-trim="" data-noescape="" class="javascript">
+>node plugFile.js test-series
 
 task test-series is started
 task subTask1 is started
@@ -419,7 +389,20 @@ stream subTask2 is ended
 done
 						</code></pre>
 					</section>
-				</section>
+					<section>
+						<h4>результат выполнения второй задачи</h4>
+						<pre><code data-trim="" data-noescape="" class="javascript">
+>node plugFile.js test-parallel
+
+task test-parallel is started
+task subTask1 is started
+task subTask2 is started
+stream subTask2 is ended
+stream subTask1 is ended
+done
+						</code></pre>
+					</section>
+
 
 				<section style="text-align: left;">
 					<h1>Вот теперь все :)</h1>
