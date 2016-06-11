@@ -176,8 +176,10 @@ body {
 	display: block;
 	padding: 5px;
 	overflow: auto;
-	max-height: 400px;
+	max-height: 500px;
 	word-wrap: normal;
+	font-size: 30px;
+    line-height: 1;
 }
 
 .reveal table {

@@ -5,6 +5,15 @@
  *
  * Copyright (C) 2016 Hakim El Hattab, http://hakim.se
  */
+.reveal pre code {
+  display: block;
+  padding: 5px;
+  overflow: auto;
+  max-height: 500px;
+  word-wrap: normal;
+  font-size: 30px;
+  line-height: 1; }
+
 /*********************************************
  * RESET STYLES
  *********************************************/
