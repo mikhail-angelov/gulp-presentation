@@ -31,18 +31,18 @@
 					<img src="gulp-2x.png" style="border:0px; background:0000">
 					</h1>
 					<p>
-						<small><a href="http://github.com/mikhail.angelov">Михаил Ангелов</a> / <a href="https://twitter.com/MikhailAngelov">@MikhailAngelov</a></small>
+						<small><a href="http://github.com/mikhail.angelov">Mikhail Angelov</a> / <a href="https://twitter.com/MikhailAngelov">@MikhailAngelov</a></small>
 					</p>
 				</section>
 				<section>
-					<h2>Автоматизация</h2>
+					<h2>Automatization</h2>
 					<p>
 						
 					</p>
 				</section>
 				<section>
-					<h4>Любая достаточно развитая технология неотличима от магии</h4>
-					<p style="text-align: right; font-style: italic;">Артур Кларк</p>
+					<h4>Any sufficiently advanced technology is indistinguishable from magic</h4>
+					<p style="text-align: right; font-style: italic;">Arthur C. Clarke</p>
 					<p>
 						
 					</p>
@@ -50,7 +50,7 @@
 
 
 				<section data-background="under.jpg">
-					<!-- <h2>заглянем подкапот </h2> -->
+
 				</section>
 
 
@@ -65,14 +65,14 @@ gulp.watch
 						</code></pre>
 					</section>
 					<section>
-						<h4>Элементарная задача Gulp</h4>
+						<h4>Elementary Gulp task</h4>
 						<pre><code data-trim="" data-noescape="" class="javascript">
 gulp.task('test', function{
     gulp.src('test.txt')
     .<span class="fragment highlight-green">pipe</span>(gulp.dest('out'));
 });
 						</code></pre>
-						<h4>команда запуска</h4>
+						<h4>run command</h4>
 						<pre><code data-trim="" data-noescape="" class="javascript">
 gulp test
 						</code></pre>
@@ -80,13 +80,13 @@ gulp test
 
 
 				<section>
-					<h4>сделаем свой gulp</h4>
+					<h4>Let's make our own Gulp</h4>
 					<img height="238" data-src="bike.jpg">
 				</section>
 
 
 					<section>
-						<h4>Элементарная задача Plug</h4>
+						<h4>Elementary Plug task</h4>
 						<pre><code data-trim="" data-noescape="" class="javascript">
 //plug.js
 var tasks = {};
@@ -112,11 +112,11 @@ plug.task('test', function(){
 						</code></pre>
 					</section>
 					<section>
-						<h4>запустим</h4>
+						<h4>run it</h4>
 						<pre><code data-trim="" data-noescape="" class="javascript">
 node plugfile.js test
 						</code></pre>
-						<h4>получим результат</h4>
+						<h4>result is:</h4>
 						<pre><code data-trim="" data-noescape="" class="javascript">
 hello plug
 						</code></pre>
@@ -145,7 +145,7 @@ function onSrc(fileName){
 						</code></pre>
 					</section>
 					<section>
-					<h4>Структура объекта в потоке</h4>
+					<h4>Object in stream</h4>
 						<pre><code data-trim="" data-noescape="" class="javascript">
 {
   name: path, //file name
@@ -171,7 +171,7 @@ function onDest(path){
 						</code></pre>
 					</section>
 					<section>
-						<h4>обновим plug file</h4>
+						<h4>update plug file</h4>
 						<pre><code data-trim="" data-noescape="" class="javascript">
 //plugfile.js
 var plug = require('./plug');
@@ -181,7 +181,7 @@ plug.task('test', function(){
     .pipe(plug.dest('out'))
 })
 						</code></pre>
-						<h4>получим результат</h4>
+						<h4>result is:</h4>
 						<pre><code data-trim="" data-noescape="" class="javascript">
 >touch test.txt
 >node plugfile.js test
@@ -192,7 +192,7 @@ test.txt
 
 
 					<section>
-					<h4>Воспользуемся библиотекой vinyl-fs</h4>
+					<h4>Let's use vinyl-fs library</h4>
 						<pre><code data-trim="" data-noescape="" class="javascript">
 //plug.js
 var vfs = require('vinyl-fs')
@@ -234,7 +234,7 @@ plug.task('test', function () {
 
 
 					<section>
-					<h4>Последняя API по порядку а не по значению </h4>
+					<h4>The last but not least API</h4>
 					<pre><code class="hljs"  data-trim contenteditable>
 //plug.js
 var plug = {
@@ -266,7 +266,7 @@ plug.watch('test.txt','test');
 
 
 				<section>
-					<h4>Заключение</h4>
+					<h4>Conclusion</h4>
 
 				</section>
 
@@ -276,13 +276,13 @@ plug.watch('test.txt','test');
 						<a href="https://twitter.com/MikhailAngelov">@MikhailAngelov</a></small>
 					</p>
 					<p>
-						<a href="https://mikhail-angelov.github.io/gulp-presentation">ссылка на презентацию</a>
+						<a href="https://mikhail-angelov.github.io/gulp-presentation">link</a>
 					</p>
 				</section>
 
 
 					<section>
-						<h4>Что же нового будет в Gulp 4?</h4>
+						<h4>What's new in Gulp 4?</h4>
 					</section>
 					<section>
 						<pre><code data-trim="" data-noescape="" class="javascript">
@@ -293,7 +293,7 @@ gulp.series
 
 
 				<section>
-					<h4>изменим файл конфигурации</h4>
+					<h4>update configuration file</h4>
 						<pre><code data-trim="" data-noescape="" class="javascript">
 //plugfile.js
 var plug = require('./plug');
@@ -314,7 +314,7 @@ plug.task('test-parallel', plug.series(['sTask1', 'sTask2']), ()=>{
 						</code></pre>
 				</section>
 				<section>
-				<h4>изменим регистрацию под задач</h4>
+				<h4>change sub task registration</h4>
 						<pre><code data-trim="" data-noescape="" class="javascript">
 //plug.js
 function onTask(name, subTasks, callback){
@@ -383,7 +383,7 @@ process.nextTick(function(){
 
 
 					<section>
-						<h4>результат выполнения первой задачи</h4>
+						<h4>The result of the first task execution</h4>
 						<pre><code data-trim="" data-noescape="" class="javascript">
 >node plugFile.js test-series
 
@@ -396,7 +396,7 @@ done
 						</code></pre>
 					</section>
 					<section>
-						<h4>результат выполнения второй задачи</h4>
+						<h4>The result of the second task execution</h4>
 						<pre><code data-trim="" data-noescape="" class="javascript">
 >node plugFile.js test-parallel
 
@@ -411,12 +411,12 @@ done
 
 
 				<section style="text-align: left;">
-					<h1>Вот теперь все :)</h1>
+					<h1>Fine :)</h1>
 					<p>
 						<a href="https://twitter.com/MikhailAngelov">@MikhailAngelov</a></small>
 					</p>
 					<p>
-						<a href="https://mikhail-angelov.github.io/gulp-presentation">ссылка на презентацию</a>
+						<a href="https://mikhail-angelov.github.io/gulp-presentation">link</a>
 					</p>
 				</section>
 
